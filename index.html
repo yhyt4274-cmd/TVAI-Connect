@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تواصل Pro | TVAI Connect</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body class="text-slate-100 min-h-screen flex flex-col font-cairo overflow-x-hidden">
+
+    <div id="canvas-container"></div>
+
+    <!-- Header -->
+    <header class="glassmorphism sticky top-0 z-50 px-6 py-4 border-b border-slate-900/60">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-teal-400 flex items-center justify-center shadow-lg">
+                    <i class="fa-solid fa-comments text-white text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-extrabold tracking-wide bg-gradient-to-r from-teal-400 to-emerald-400 bg-clip-text text-transparent">تواصل Pro</h1>
+                    <p class="text-[10px] text-slate-400">بواسطة Topvon AI • 2026</p>
+                </div>
+            </div>
+            <div id="nav-user-area" class="flex items-center gap-4"></div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 max-w-7xl w-full mx-auto p-4 md:p-6 flex flex-col justify-center relative z-10">
+        
+        <!-- Auth View -->
+        <div id="auth-container" class="max-w-md w-full mx-auto my-auto glassmorphism rounded-2xl p-8 shadow-2xl">
+            <div class="text-center mb-8">
+                <span class="bg-teal-500/10 text-teal-400 text-xs font-bold px-3 py-1 rounded-full border border-teal-500/20">آمن ومشفر بالكامل 🔐</span>
+                <h2 class="text-2xl font-bold text-white mt-4 mb-2" id="auth-title">تسجيل الدخول</h2>
+                <p class="text-slate-400 text-sm" id="auth-subtitle">مرحباً بك في نظام تواصل الاحترافي</p>
+            </div>
+
+            <form id="auth-form" class="space-y-5">
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-2">البريد الإلكتروني</label>
+                    <input type="email" id="auth-email" required class="w-full glass-input rounded-xl py-3 px-4 text-sm" placeholder="name@example.com">
+                </div>
+                <div id="username-field" class="hidden">
+                    <label class="block text-sm font-medium text-slate-300 mb-2">اسم المستخدم</label>
+                    <input type="text" id="auth-username" class="w-full glass-input rounded-xl py-3 px-4 text-sm" placeholder="أحمد محمد">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-2">كلمة المرور</label>
+                    <input type="password" id="auth-password" required class="w-full glass-input rounded-xl py-3 px-4 text-sm" placeholder="••••••••">
+                </div>
+                <button type="submit" id="auth-submit-btn" class="w-full bg-gradient-to-r from-brand-600 to-teal-500 text-white font-semibold py-3 px-4 rounded-xl transition duration-300 flex items-center justify-center gap-2">
+                    <span>دخول آمن</span>
+                </button>
+            </form>
+            <div class="mt-6 text-center">
+                <button id="toggle-auth-btn" class="text-sm text-teal-400 hover:text-teal-300 transition">ليس لديك حساب؟ سجل الآن</button>
+            </div>
+        </div>
+
+        <!-- Dashboard View -->
+        <div id="dashboard-container" class="hidden grid grid-cols-1 lg:grid-cols-12 gap-6 h-[calc(100vh-160px)] min-h-[550px]">
+            
+            <!-- Mobile Navigation -->
+            <div class="lg:hidden col-span-12 flex gap-3">
+                <button id="show-sidebar-btn" class="flex-1 bg-brand-600 text-white py-2.5 rounded-xl text-sm font-semibold flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-users"></i> الأصدقاء والطلبات
+                </button>
+                <button id="show-chat-btn" class="flex-1 bg-slate-800 text-slate-400 py-2.5 rounded-xl text-sm font-semibold flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-comment-dots"></i> المحادثة النشطة
+                </button>
+            </div>
+
+            <!-- Sidebar -->
+            <div id="sidebar-wrapper" class="lg:col-span-4 flex flex-col gap-4 h-full">
+                <div class="glassmorphism rounded-2xl p-4 flex flex-col gap-3">
+                    <h3 class="font-bold text-white text-sm flex items-center gap-2">
+                        <i class="fa-solid fa-user-plus text-teal-400"></i> إضافة صديق
+                    </h3>
+                    <div class="flex gap-2">
+                        <input type="email" id="friend-email-input" class="flex-1 glass-input rounded-xl px-3 py-2 text-xs" placeholder="البريد الإلكتروني...">
+                        <button id="add-friend-btn" class="bg-brand-600 hover:bg-brand-500 text-white px-4 py-2 rounded-xl text-xs font-semibold transition">إرسال</button>
+                    </div>
+                </div>
+
+                <div class="glassmorphism rounded-2xl p-4 flex-1 flex flex-col overflow-hidden">
+                    <div class="flex border-b border-slate-800 pb-2 mb-3 gap-2">
+                        <button id="tab-friends" class="flex-1 py-1 text-xs font-bold text-center border-b-2 border-teal-500 text-teal-400">الأصدقاء (<span id="friends-count">0</span>)</button>
+                        <button id="tab-requests" class="flex-1 py-1 text-xs font-bold text-center text-slate-400">الطلبات (<span id="requests-count">0</span>)</button>
+                    </div>
+                    <div id="friends-list" class="flex-1 overflow-y-auto space-y-2 pr-1"></div>
+                    <div id="requests-list" class="hidden flex-1 overflow-y-auto space-y-2 pr-1"></div>
+                </div>
+            </div>
+
+            <!-- Chat Area -->
+            <div id="chat-window-wrapper" class="lg:col-span-8 glassmorphism rounded-2xl flex flex-col h-full overflow-hidden">
+                <div id="chat-header" class="px-6 py-4 border-b border-slate-800/60 flex items-center justify-between bg-slate-900/20">
+                    <div class="flex items-center gap-3">
+                        <div id="chat-avatar" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 border border-slate-700">👤</div>
+                        <div>
+                            <h4 id="chat-partner-name" class="font-bold text-white text-sm">اختر محادثة لبدء الدردشة</h4>
+                            <p id="chat-partner-status" class="text-[11px] text-slate-400">نظام مشفر بالكامل</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="chat-messages" class="flex-1 p-6 overflow-y-auto space-y-4 bg-slate-950/10">
+                    <div class="h-full flex flex-col items-center justify-center text-center text-slate-500">
+                        <i class="fa-solid fa-user-shield text-5xl mb-3 text-slate-700"></i>
+                        <p class="text-sm">اختر صديقاً لبدء محادثة آمنة</p>
+                    </div>
+                </div>
+
+                <div class="p-4 border-t border-slate-800/60 bg-slate-900/20">
+                    <form id="chat-form" class="flex gap-2">
+                        <input type="text" id="message-input" disabled class="flex-1 glass-input rounded-xl px-4 py-3 text-sm" placeholder="اكتب رسالة...">
+                        <button type="submit" id="send-btn" disabled class="bg-gradient-to-r from-brand-600 to-teal-500 text-white px-5 py-3 rounded-xl transition shadow-lg">
+                            <i class="fa-regular fa-paper-plane transform rotate-180"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="glassmorphism border-t border-slate-900/50 py-4 px-6 text-center text-xs text-slate-500 relative z-10 mt-auto">
+        <p>© 2026 جميع الحقوق محفوظة لشركة <span class="text-teal-400 font-semibold">Topvon AI</span>. تم التطوير بواسطة <span class="text-teal-400 font-semibold">محمد تامر</span> 🇪🇬</p>
+    </footer>
+
+    <script src="js/supabase-client.js" type="module"></script>
+    <script src="js/state.js" type="module"></script>
+    <script src="js/api.js" type="module"></script>
+    <script src="js/ui.js" type="module"></script>
+    <script src="js/app.js" type="module"></script>
+</body>
+</html>
