@@ -1,21 +1,45 @@
-# TVAI Connect 💬
+# 💬 TVAI Connect
 
-Real-time chat application built with Supabase + Vanilla JavaScript + TailwindCSS.
+A real-time chat application built with modern web technologies, featuring a clean UI, friends system, and live messaging experience.
+
+---
 
 ## 🚀 Features
-- Real-time messaging
-- Friend system (add / accept requests)
-- Authentication (Supabase or Mock mode)
-- Online/offline status
-- Responsive UI (mobile + desktop)
+- Real-time chat system
+- Friend requests (add / accept)
+- Authentication system (Supabase or mock mode)
+- Responsive design for all devices
 - Glassmorphism UI design
-- 3D animated background (Three.js)
+- Smooth 3D animated background (Three.js)
+
+---
 
 ## 🧠 Tech Stack
 - HTML5
-- TailwindCSS
+- CSS3 + TailwindCSS
 - JavaScript (ES Modules)
-- Supabase (Auth + Realtime DB)
+- Supabase (Backend + Realtime DB)
 - Three.js
 
-## 📦 Project Structure
+---
+
+## 📁 Project Structure
+---
+
+## 🌐 Live Demo
+Add your GitHub Pages link here after deployment.
+
+---
+
+## 👨‍💻 Author
+Developed by **Mohamed Tamer**
+
+---
+
+## ⚡ Powered By
+This project was created using **Topvon Ai Platform**
+
+---
+
+## 📌 Status
+MVP Version — continuously improving and adding new features.
