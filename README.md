@@ -36,7 +36,24 @@ It is built with a focus on performance, simplicity, and modern UI design.
 
 ## 📁 Project Structure
 ---
+## 📦 Use as Template
 
+You can use this project as a starting point:
+
+1. Fork this repository
+2. Clone it locally
+3. Install dependencies (if needed)
+4. Configure Supabase in `supabase-client.js`
+5. Run `index.html`
+6. Customize freely for your project
+
+---
+
+## 💡 What you can build with it
+- Chat app for companies
+- School communication system
+- Gaming chat platform
+- Social networking MVP
 ## ⚙️ How to Run
 
 ### Option 1: Local
