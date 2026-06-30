@@ -76,7 +76,7 @@ Add your live link here after deployment
 
 ## 👨‍💻 Author
 
-Developed by **Mohamed Tamer**
+Developed by ** GDS**
 
 ---
 
